@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 export default function ProductTable (props) {
     let lastCategory = null;
@@ -7,7 +7,7 @@ export default function ProductTable (props) {
     props.products.forEach((product, idx) => {
         if (product.category !== lastCategory) {
             lastCategory = product.category;
-            tableRows.push(<ProductCategoryRow category={product.category} key={idx}/>);                
+            tableRows.push(<ProductCategoryRow category={product.category} key={product.category}/>);                
         }
         if (!props.isChecked || (props.isChecked && product.stocked)) {
             tableRows.push(<ProductRow name={product.name} price={product.price} stocked={product.stocked} key={idx} />);
