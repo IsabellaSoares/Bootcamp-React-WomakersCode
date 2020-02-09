@@ -4,20 +4,39 @@ import SearchBar from './SearchBar';
 import ProductTable from './ProductTable';
 
 export default class FilterableProductTable extends Component {
-    constructor (props) {
-        super(props);
-        this.state = {
-            input: '',
-            isChecked: false
-        }
-    }
-    
-    render () {
-        return (
-            <div>
-                <SearchBar input={this.state.input} isChecked={this.state.isChecked} />
-                <ProductTable products={PRODUCTS} isChecked={this.state.isChecked} />
-            </div>            
-        );
-    }
+	constructor(props) {
+		super(props);
+		this.state = {
+			filterText: '',
+			inStockOnly: false
+		};
+		this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
+		this.handleInStockChange = this.handleInStockChange.bind(this);
+	}
+
+	handleFilterTextChange(filterText) {
+		this.setState({ filterText: filterText });
+	}
+
+	handleInStockChange(inStockOnly) {
+		this.setState({ inStockOnly: inStockOnly });
+	}
+
+	render() {
+		return (
+			<div>
+				<SearchBar
+					filterText={this.state.filterText}
+					inStockOnly={this.state.inStockOnly}
+					onFilterTextChange={this.handleFilterTextChange}
+					onInStockChange={this.handleInStockChange}
+				/>
+				<ProductTable
+					products={PRODUCTS}
+					filterText={this.state.filterText}
+					inStockOnly={this.state.inStockOnly}
+				/>
+			</div>
+		);
+	}
 }

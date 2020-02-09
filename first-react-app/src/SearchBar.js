@@ -1,31 +1,34 @@
 import React, { Component } from 'react';
 
 export default class SearchBar extends Component {
-    constructor (props) {
-        super(props);
-        this.state = {
-            input: this.props.input,
-            isChecked: this.props.isChecked
-        }
-    }
+	constructor(props) {
+		super(props);
+		this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
+		this.handleInStockChange = this.handleInStockChange.bind(this);
+	}
 
-    handleInput = (event) => {
-        this.setState({ input: event.target.value });
-    }
+	handleFilterTextChange(e) {
+		this.props.onFilterTextChange(e.target.value);
+	}
 
-    handleCheckbox = () => {
-        this.setState({ isChecked: !this.state.isChecked });
-    }
+	handleInStockChange(e) {
+		this.props.onInStockChange(e.target.checked);
+	}
 
-    render () {
-        return (
-            <form style={{display: "inline-grid"}}>
-                <input type="text" placeholder="Search..." value={this.state.input} onChange={this.handleInput}/>
-                <label>
-                    <input type="checkbox" checked={this.state.isChecked} onChange={this.handleCheckbox}/>
-                    Only show products in stock
-                </label>                
-            </form>
-        );
-    }    
+	render() {
+		return (
+			<form style={{ display: 'inline-grid' }}>
+				<input
+					type="text"
+					placeholder="Search..."
+					value={this.props.filterText}
+					onChange={this.handleFilterTextChange}
+				/>
+				<label>
+					<input type="checkbox" checked={this.props.inStockOnly} onChange={this.handleInStockChange} />
+					Only show products in stock
+				</label>
+			</form>
+		);
+	}
 }
