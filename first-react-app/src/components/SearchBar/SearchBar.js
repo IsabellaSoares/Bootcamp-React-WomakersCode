@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './style.css';
 
 export default class SearchBar extends Component {
 	constructor(props) {
@@ -17,12 +18,13 @@ export default class SearchBar extends Component {
 
 	render() {
 		return (
-			<form style={{ display: 'inline-grid' }}>
+			<form className="form">
 				<input
 					type="text"
 					placeholder="Search..."
 					value={this.props.filterText}
 					onChange={this.handleFilterTextChange}
+					className="search-input"
 				/>
 				<label>
 					<input type="checkbox" checked={this.props.inStockOnly} onChange={this.handleInStockChange} />

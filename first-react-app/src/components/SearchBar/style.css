@@ -1,0 +1,17 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5vh;
+}
+
+.search-input {
+    font-size: 15px;
+    border-radius: 4px;
+    padding: 2px;
+    margin-bottom: 1vh;
+}
+
+label{
+    display: inline-flex;
+    font-size: 14px;
+}
