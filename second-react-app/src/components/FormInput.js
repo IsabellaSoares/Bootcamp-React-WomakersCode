@@ -7,23 +7,48 @@ export default class FormInput extends Component {
 			<div className="inputs-container">
 				<label>
 					Nome completo
-					<input type="text" name="name" value={this.props.name} onChange={this.props.onChange} />
+					<input
+                        type="text"
+                        name="name"
+                        value={this.props.name}
+                        onChange={this.props.onChange} />
 				</label>
 				<label>
 					Cidade
-					<input type="text" name="city" value={this.props.city} onChange={this.props.onChange} />
+					<input
+                        type="text"
+                        name="city"
+                        value={this.props.city}
+                        onChange={this.props.onChange} />
 				</label>
 				<label>
 					Email
-					<input type="text" name="email" placeholder="email@email.com" value={this.props.email} onChange={this.props.onChange} />
+					<input
+                        type="email"
+                        name="email"
+                        placeholder="email@email.com"
+                        value={this.props.email}
+                        onChange={this.props.onChange} />
 				</label>
 				<label>
 					CPF
-					<input type="text" name="cpf" placeholder="000.000.000-00" value={this.props.cpf} onChange={this.props.onChange} />
+					<input
+                        type="number"
+                        min={11}
+                        max={11}
+                        name="cpf"
+                        placeholder="000.000.000-00"
+                        value={this.props.cpf}
+                        onChange={this.props.onChange} />
 				</label>
 				<label>
 					Telefone
-					<input type="text" name="phone" placeholder="(xx) xxxxx-xxxx" value={this.props.phone} onChange={this.props.onChange} />
+					<input
+                        type="tel"
+                        name="phone"
+                        placeholder="(xx) xxxxx-xxxx"
+                        value={this.props.phone}
+                        onChange={this.props.onChange} />
 				</label>
 			</div>
 		);
