@@ -4,7 +4,7 @@ import './formInput.css';
 export default class FormInput extends Component {
 	render() {
 		return (
-			<form className="inputs-container">
+			<form className="inputs-container" onSubmit={this.props.onSubmit}>
 				<label>
 					Nome completo
 					<input
@@ -33,7 +33,7 @@ export default class FormInput extends Component {
 				<label>
 					CPF
 					<input
-                        type="number"
+                        type="text"
                         name="cpf"
                         placeholder="000.000.000-00"
                         value={this.props.cpf}
