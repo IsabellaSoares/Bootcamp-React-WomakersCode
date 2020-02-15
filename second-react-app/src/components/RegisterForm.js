@@ -27,29 +27,26 @@ export default class RegisterForm extends Component {
 	}
 
 	handleSubmit(event) {
+        event.preventDefault();
+        
         if (this.state.name === '') {
-            alert('O campo \'Nome completo\' não pode estar vazio!');
-            event.preventDefault();
+            return alert('O campo \'Nome completo\' não pode estar vazio!');
         }
 
         if (this.state.city === '') {
-            alert('O campo \'Cidade\' não pode estar vazio!');
-            event.preventDefault();
+            return alert('O campo \'Cidade\' não pode estar vazio!');
         }
 
         if (this.state.email === '') {
-            alert('O campo \'Email\' não pode estar vazio!');
-            event.preventDefault();
+            return alert('O campo \'Email\' não pode estar vazio!');
         }
 
         if (this.state.cpf === '') {
-            alert('O campo \'CPF\' não pode estar vazio!');
-            event.preventDefault();
+            return alert('O campo \'CPF\' não pode estar vazio!');
         }
 
         if (this.state.phone === '') {
-            alert('O campo \'Telefone\' não pode estar vazio!');
-            event.preventDefault();
+            return alert('O campo \'Telefone\' não pode estar vazio!');
         }
 	}
 
