@@ -5,10 +5,10 @@ import SubmitButton from './SubmitButton';
 export default class RegisterForm extends Component {
     render () {
         return(
-            <div>
+            <form>
                 <FormInput/>
                 <SubmitButton/>
-            </div>
+            </form>
         );
     }
 }
