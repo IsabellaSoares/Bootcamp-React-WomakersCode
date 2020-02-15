@@ -3,24 +3,35 @@ import FormInput from './FormInput';
 import { SubmitButton } from './SubmitButton';
 
 export default class RegisterForm extends Component {
-
-    constructor () {
+	constructor() {
         super();
-        this.state = {
-            name: '',
-            city: '',
-            email: '',
-            cpf: '',
-            phone: ''
-        }
-    }
+        
+		this.state = {
+			name: '',
+			city: '',
+			email: '',
+			cpf: '',
+			phone: ''
+        };
+        
+        this.handleInputChange = this.handleInputChange.bind(this);
+	}
 
-    render () {
-        return(
-            <form>
-                <FormInput {...this.state}/>
-                {SubmitButton}
-            </form>
-        );
-    }
+	handleInputChange (event) {
+		const value = event.target.value;
+		const name = event.target.name;
+
+		this.setState({
+			[name]: value
+		});
+	}
+
+	render() {
+		return (
+			<form>
+				<FormInput {...this.state} onChange={this.handleInputChange} />
+				{SubmitButton}
+			</form>
+		);
+	}
 }
