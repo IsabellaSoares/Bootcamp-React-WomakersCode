@@ -5,7 +5,7 @@ export function LabelInput (props) {
     return (
         <label>
             {props.label}
-            <input type={props.type} placeholder={props.placeholder} />
+            <input type={props.type} placeholder={props.placeholder} value={props.value} />
         </label>
     );
 }
