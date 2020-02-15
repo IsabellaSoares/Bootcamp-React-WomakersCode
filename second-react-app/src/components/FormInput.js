@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import './formInput.css';
 
 export default class FormInput extends Component {
 	render() {
 		return (
-			<div>
+			<div className="inputs-container">
 				<label>
 					Nome completo
 					<input type="text" />

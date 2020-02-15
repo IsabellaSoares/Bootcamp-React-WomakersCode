@@ -1,0 +1,12 @@
+.inputs-container {
+    display: table-caption;
+    font-size: 14px;
+}
+
+input {
+    margin: 6px 0 12px;
+}
+
+label {
+    font-weight: 500;
+}
