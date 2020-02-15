@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import FormInput from './FormInput';
-import { SubmitButton } from './SubmitButton';
 
 export default class RegisterForm extends Component {
 	constructor() {
@@ -28,10 +27,7 @@ export default class RegisterForm extends Component {
 
 	render() {
 		return (
-			<form>
-				<FormInput {...this.state} onChange={this.handleInputChange} />
-				{SubmitButton}
-			</form>
+            <FormInput {...this.state} onChange={this.handleInputChange} />
 		);
 	}
 }

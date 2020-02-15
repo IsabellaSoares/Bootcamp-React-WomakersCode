@@ -4,7 +4,7 @@ import './formInput.css';
 export default class FormInput extends Component {
 	render() {
 		return (
-			<div className="inputs-container">
+			<form className="inputs-container">
 				<label>
 					Nome completo
 					<input
@@ -34,8 +34,6 @@ export default class FormInput extends Component {
 					CPF
 					<input
                         type="number"
-                        min={11}
-                        max={11}
                         name="cpf"
                         placeholder="000.000.000-00"
                         value={this.props.cpf}
@@ -50,7 +48,8 @@ export default class FormInput extends Component {
                         value={this.props.phone}
                         onChange={this.props.onChange} />
 				</label>
-			</div>
+                <input type="submit" value="Inscrever" />
+			</form>
 		);
 	}
 }
