@@ -1,54 +1,55 @@
 import React, { Component } from 'react';
+import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 export default class FormInput extends Component {
 	render() {
 		return (
-			<form className="inputs-container" onSubmit={this.props.onSubmit}>
-				<label>
-					Nome completo
-					<input
-                        type="text"
-                        name="name"
+			<Form className="inputs-container" onSubmit={this.props.onSubmit}>
+				<FormGroup>
+					<Label for="name">Nome completo</Label>
+					<Input type="text"
+						id="name"
+						name="name"
                         value={this.props.name}
                         onChange={this.props.onChange} />
-				</label>
-				<label>
-					Cidade
-					<input
-                        type="text"
+				</FormGroup>
+				<FormGroup>
+					<Label for="city">Cidade</Label>
+					<Input type="text"
+						id="city"
                         name="city"
                         value={this.props.city}
                         onChange={this.props.onChange} />
-				</label>
-				<label>
-					Email
-					<input
-                        type="email"
-                        name="email"
+				</FormGroup>
+				<FormGroup>
+					<Label for="email">Email</Label>
+					<Input type="email"
+						id="email"
+						name="email"
                         placeholder="email@email.com"
                         value={this.props.email}
                         onChange={this.props.onChange} />
-				</label>
-				<label>
-					CPF
-					<input
-                        type="text"
-                        name="cpf"
-                        placeholder="000.000.000-00"
+				</FormGroup>				
+				<FormGroup>
+					<Label for="cpf">CPF</Label>
+					<Input type="text"
+						id="cpf"
+						name="cpf"
+						placeholder="000.000.000-00"
                         value={this.props.cpf}
                         onChange={this.props.onChange} />
-				</label>
-				<label>
-					Telefone
-					<input
-                        type="tel"
-                        name="phone"
+				</FormGroup>
+				<FormGroup>
+					<Label for="phone">Telefone</Label>
+					<Input type="tel"
+						id="phone"
+						name="phone"
                         placeholder="(xx) xxxxx-xxxx"
                         value={this.props.phone}
                         onChange={this.props.onChange} />
-				</label>
-                <input type="submit" value="Inscrever" />
-			</form>
+				</FormGroup>
+                <Button className="submit-button">Inscrever</Button>
+			</Form>
 		);
 	}
 }
