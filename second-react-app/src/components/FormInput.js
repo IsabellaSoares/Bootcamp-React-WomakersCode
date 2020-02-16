@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './formInput.css';
 
 export default class FormInput extends Component {
 	render() {
