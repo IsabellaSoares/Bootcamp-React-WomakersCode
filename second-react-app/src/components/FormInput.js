@@ -39,7 +39,7 @@ export default class FormInput extends Component {
 					<Input type="text"
 						id="cpf"
 						name="cpf"
-						placeholder="000.000.000-00"
+						placeholder="Apenas números"
 						maxlength={11}
                         value={this.props.cpf}
 						onChange={this.props.onChange}
