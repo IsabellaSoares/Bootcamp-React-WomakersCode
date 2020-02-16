@@ -10,7 +10,13 @@ export default class RegisterForm extends Component {
 			city: '',
 			email: '',
 			cpf: '',
-			phone: ''
+			phone: '',
+			validCPF: '',
+			invalidCPF: '',
+			validPhone: '',
+			invalidPhone: '',
+			validEmail: '',
+			invalidEmail: ''
 		};
 
 		this.handleInputChange = this.handleInputChange.bind(this);
@@ -24,6 +30,50 @@ export default class RegisterForm extends Component {
 		this.setState({
 			[name]: value
 		});
+
+		if (name === 'cpf') {
+			if (value.length < 11) {
+				this.setState({
+					invalidCPF: true,
+					validCPF: false
+				});
+			} else {
+				this.setState({
+					invalidCPF: false,
+					validCPF: true
+				});
+			}
+		} 
+		
+		if (name === 'phone') {
+			if (value.replace(/\D+/g, '').length < 11) {
+				this.setState({
+					invalidPhone: true,
+					validPhone: false
+				});
+			} else {
+				this.setState({
+					invalidPhone: false,
+					validPhone: true
+				});
+			}
+		}
+
+		if (name === 'email') {
+			var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			
+			if (!re.test(value)) {
+				this.setState({
+					invalidEmail: true,
+					validEmail: false
+				});
+			} else {
+				this.setState({
+					invalidEmail: false,
+					validEmail: true
+				});
+			}
+		}
 	}
 
 	handleSubmit(event) {
