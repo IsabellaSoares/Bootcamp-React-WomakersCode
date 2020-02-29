@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
+import { connect } from 'react-redux';
+
+const mapStateToProps = store => ({
+  newValue: store.clickState.newValue
+});
 
 class App extends Component {
   render () {
@@ -13,4 +18,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(mapStateToProps)(App);
