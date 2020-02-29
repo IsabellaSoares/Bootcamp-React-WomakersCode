@@ -1,35 +1,24 @@
 
-import React, { Component, Fragment } from 'react'
- 
-import Loading from './Loading'
+import React from 'react'
  
 import { getUsers } from '../service/api'
  
-class Users extends Component {
+function Users(props) {
  
-    state = {
-        loading: false
-    }
- 
-    getUsers = async () => {
-        this.setState({ loading: true })
+    const handleGetUsers = async () => {
+        const { showLoading, hideLoading } = props;
+
+        showLoading('Carregando usuários...');
+
         const response = await getUsers().then(response => {
-            this.setState({ loading: false })
-            return response
-        })
-        console.log({ response })
+            hideLoading();
+            return response;
+        });
+
+        console.log({ response });
     }
  
-    render() {
-        const { loading } = this.state
- 
-        return (
-            <Fragment>
-                <button onClick={this.getUsers}>Buscar usuários</button>
-                <Loading loading={loading} message='Carregando usuários...' />
-            </Fragment>
-        )
-    }
+    return(<button onClick={handleGetUsers}>Buscar usuários</button>);
 }
  
 export default Users

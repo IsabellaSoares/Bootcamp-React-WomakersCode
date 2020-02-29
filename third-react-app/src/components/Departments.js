@@ -1,35 +1,24 @@
 
-import React, { Component, Fragment } from 'react'
- 
-import Loading from './Loading'
+import React from 'react'
  
 import { getDepartments } from '../service/api'
  
-class Departments extends Component {
+function Departments(props) {
  
-    state = {
-        loading: false
-    }
- 
-    getDepartments = async () => {
-        this.setState({ loading: true })
+    const handleGetDepartments = async () => {
+        const { showLoading, hideLoading } = props;
+
+        showLoading('Carregando departamentos...');
+
         const response = await getDepartments().then(response => {
-            this.setState({ loading: false })
-            return response
-        })
-        console.log({ response })
+            hideLoading();
+            return response;
+        });
+
+        console.log({ response });
     }
  
-    render() {
-        const { loading } = this.state
- 
-        return (
-            <Fragment>
-                <button onClick={this.getDepartments}>Buscar departamentos</button>
-                <Loading loading={loading} message='Carregando departamentos...' />
-            </Fragment>
-        )
-    }
+    return(<button onClick={handleGetDepartments}>Buscar departamentos</button>);
 }
  
 export default Departments
