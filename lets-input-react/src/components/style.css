@@ -1,0 +1,38 @@
+.form-container {
+    background-color: white;
+    padding: 16px 24px;
+    border-radius: 10px;
+    width: 25%;
+    left: 20%;
+    top: 8%;
+    position: absolute;
+    box-shadow: 0px 4px 8px 0px rgba(0, 222, 255, 0.5), 0px 6px 20px 0px rgba(0, 222, 255, 0.5);
+    margin-bottom: 30px;
+}
+
+h4 {
+    text-align: center;
+}
+
+.inputs-container {
+    font-size: 14px !important;
+    margin-top: 1.5rem;
+}
+
+input {
+    height: calc(1.5em + .5rem) !important;
+}
+
+label {
+    font-weight: 500;
+    display: grid;
+    text-align: initial;
+}
+
+.submit-button {
+    background-color: rgb(0, 222, 255) !important;
+    border-color: rgb(0, 222, 255) !important;
+    color: rgb(0, 0, 0) !important;
+    display: flex !important;
+    margin: 25px auto 0 !important;
+}
