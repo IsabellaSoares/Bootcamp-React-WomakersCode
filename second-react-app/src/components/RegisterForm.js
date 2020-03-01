@@ -11,12 +11,11 @@ export default class RegisterForm extends Component {
 			email: '',
 			cpf: '',
 			phone: '',
+			validName: '',
+			validCity: '',
 			validCPF: '',
-			invalidCPF: '',
 			validPhone: '',
-			invalidPhone: '',
-			validEmail: '',
-			invalidEmail: ''
+			validEmail: ''
 		};
 
 		this.handleInputChange = this.handleInputChange.bind(this);
@@ -34,12 +33,10 @@ export default class RegisterForm extends Component {
 		if (name === 'cpf') {
 			if (value.length < 11) {
 				this.setState({
-					invalidCPF: true,
 					validCPF: false
 				});
 			} else {
 				this.setState({
-					invalidCPF: false,
 					validCPF: true
 				});
 			}
@@ -48,12 +45,10 @@ export default class RegisterForm extends Component {
 		if (name === 'phone') {
 			if (value.replace(/\D+/g, '').length < 11) {
 				this.setState({
-					invalidPhone: true,
 					validPhone: false
 				});
 			} else {
 				this.setState({
-					invalidPhone: false,
 					validPhone: true
 				});
 			}
@@ -64,12 +59,10 @@ export default class RegisterForm extends Component {
 			
 			if (!re.test(value)) {
 				this.setState({
-					invalidEmail: true,
 					validEmail: false
 				});
 			} else {
 				this.setState({
-					invalidEmail: false,
 					validEmail: true
 				});
 			}
@@ -77,27 +70,50 @@ export default class RegisterForm extends Component {
 	}
 
 	handleSubmit(event) {
-        event.preventDefault();
+		event.preventDefault();
+		var submit = true;
         
         if (this.state.name === '') {
-            return alert('O campo \'Nome completo\' não pode estar vazio!');
+            this.setState({
+				validName: false
+			});
+
+			submit = false;
         }
 
         if (this.state.city === '') {
-            return alert('O campo \'Cidade\' não pode estar vazio!');
+            this.setState({
+				validCity: false
+			});
+
+			submit = false;
         }
 
         if (this.state.email === '') {
-            return alert('O campo \'Email\' não pode estar vazio!');
+            this.setState({
+				validEmail: false
+			});
+
+			submit = false;
         }
 
         if (this.state.cpf === '') {
-            return alert('O campo \'CPF\' não pode estar vazio!');
+			this.setState({
+				validCPF: false
+			});
+
+			submit = false;
         }
 
         if (this.state.phone === '') {
-            return alert('O campo \'Telefone\' não pode estar vazio!');
-        }
+            this.setState({
+				validPhone: false
+			});
+
+			submit = false;
+		}
+		
+		if (!submit) return;
 	}
 
 	render() {
