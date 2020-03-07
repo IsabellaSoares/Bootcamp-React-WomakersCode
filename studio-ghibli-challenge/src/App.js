@@ -1,12 +1,12 @@
 import React from 'react'
 import './App.css'
-import LogoGhibli from './logo.png';
 import MoviesList from './MoviesList';
+import Header from './Header';
 
 function App() {
   return (
     <div className="App">
-      <img src={LogoGhibli} />
+      <Header />
       <MoviesList />
     </div>
   )

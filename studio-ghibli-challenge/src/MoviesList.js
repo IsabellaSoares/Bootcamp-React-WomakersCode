@@ -16,7 +16,7 @@ function MoviesList () {
     }).catch(function(err) { console.log(err) });
 
     return (
-        <Row>
+        <Row justify="center" gutter={[16, 24]}>
             {list.map((film) => {
                 return(
                     <MovieCard title={film.title} description={film.description} />

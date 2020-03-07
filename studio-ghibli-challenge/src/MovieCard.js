@@ -1,10 +1,19 @@
 import React from 'react';
-import { Col } from 'antd';
+import { Col, Card } from 'antd';
 
-function MovieCard ({ title, description }) {
-    return (
-        <Col span={8}>{title}</Col>
-    );
+const gridStyle = {
+    width: 300,
+    margin: 'auto',
+};
+
+function MovieCard({ title, description }) {
+	return (
+		<Col span={8}>
+			<Card title={title} bordered={true} style={gridStyle}>
+				<p>{description}</p>
+			</Card>
+		</Col>
+	);
 }
 
 export default MovieCard;
