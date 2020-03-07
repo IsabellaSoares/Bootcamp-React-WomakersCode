@@ -3,7 +3,7 @@
 
 
 const visibilityFilter = (state, action) => {
-    
+    return null;
 }
 
 

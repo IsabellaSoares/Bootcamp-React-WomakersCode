@@ -8,8 +8,8 @@ export default function App() {
   return (
     <div style={{padding: 10}}>
         <AddTodo/>
-        <VisibleTodoList/>
-        <Footer/>
+        {/* <VisibleTodoList/> */}
+        {/* <Footer/> */}
     </div>
   )
 }

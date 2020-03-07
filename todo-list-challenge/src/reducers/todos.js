@@ -5,7 +5,7 @@ const todos = (state = [], action) => {
         case 'TOGGLE_TODO':
             
         default:
-            
+            return null;
     }
 }
 export default todos

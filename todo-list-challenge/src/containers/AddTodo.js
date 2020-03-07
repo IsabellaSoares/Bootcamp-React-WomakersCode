@@ -1,12 +1,18 @@
 import React, { useRef } from 'react'
 import { connect } from 'react-redux'
 import { addTodo } from '../actions'
-import { Form, Button } from 'antd'
+import { Form, Button, Row, Col } from 'antd'
 
 function AddTodo() {
 
     return (
-        //esse é o componente que deve lidar com a adição de todos
+        <>
+            <Row>
+                <Col span={8}>col-8</Col>
+                <Col span={8}>col-8</Col>
+                <Col span={8}>col-8</Col>
+            </Row>
+        </>
     )
 }
 
