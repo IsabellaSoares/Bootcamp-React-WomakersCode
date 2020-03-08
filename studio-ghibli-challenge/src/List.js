@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Row, Spin } from 'antd';
-import MovieCard from './MovieCard';
+import MovieCard from './Card';
 
 function MoviesList () {
     const [list, setList] = useState([]);
