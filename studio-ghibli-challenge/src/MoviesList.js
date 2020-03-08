@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Row } from 'antd';
+import { Row, Spin } from 'antd';
 import MovieCard from './MovieCard';
 
 function MoviesList () {
     const [list, setList] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     const URL_TO_FETCH = 'https://ghibliapi.herokuapp.com';
     
@@ -13,16 +14,23 @@ function MoviesList () {
         return response.json();
     }).then(function(data) {
         setList(data);
+        setLoading(false);
     }).catch(function(err) { console.log(err) });
 
     return (
-        <Row justify="center" gutter={[16, 24]} style={{margin: '0 70px'}} >
-            {list.map((film, index) => {
-                return(
-                    <MovieCard title={film.title} description={film.description} index={index} />
-                );
-            })}
-        </Row>
+        <>
+        {
+            loading ? ( <Spin size="large" /> ) : (
+                <Row justify="center" gutter={[16, 24]} style={{margin: '0 70px'}} >
+                    {list.map((film, index) => {
+                        return(
+                            <MovieCard title={film.title} description={film.description} index={index} />
+                        );
+                    })}
+                </Row>
+            )
+        }
+        </>
     );
 }
 
