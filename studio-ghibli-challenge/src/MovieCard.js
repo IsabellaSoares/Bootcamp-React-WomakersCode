@@ -1,5 +1,6 @@
 import React from 'react';
 import { Col, Card } from 'antd';
+import { Link } from 'react-router-dom';
 import './App.css';
 
 const cardStyle = {
@@ -28,18 +29,21 @@ function selectHeadStyle(index) {
 	}
 }
 
-function MovieCard({ title, description, index }) {
+function MovieCard({ movie, index }) {
 	return (
 		<Col span={8}>
-			<Card
-				title={title}
-				bordered={true}
-				headStyle={selectHeadStyle(index)}
-				bodyStyle={{ maxHeight: '222px' }}
-				style={cardStyle}
-			>
-				<p>{description}</p>
-			</Card>
+			<Link to={`/movie/${index}`}>
+				<Card
+					hoverable
+					title={movie.title}
+					bordered={true}
+					headStyle={selectHeadStyle(index)}
+					bodyStyle={{ maxHeight: '222px' }}
+					style={cardStyle}
+				>
+					<p>{movie.description}</p>
+				</Card>
+			</Link>
 		</Col>
 	);
 }

@@ -22,9 +22,9 @@ function MoviesList () {
         {
             loading ? ( <Spin size="large" /> ) : (
                 <Row justify="center" gutter={[16, 24]} style={{margin: '0 70px'}} >
-                    {list.map((film, index) => {
+                    {list.map((movie, index) => {
                         return(
-                            <MovieCard title={film.title} description={film.description} index={index} />
+                            <MovieCard key={movie.id} movie={movie} index={index} />
                         );
                     })}
                 </Row>
