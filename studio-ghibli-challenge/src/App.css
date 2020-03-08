@@ -1,4 +1,14 @@
 .App {
-  text-align: center;
-  background-color: #F6F6F6;
+	text-align: center;
+	background-color: #f6f6f6;
+}
+
+p {
+	text-align: justify;
+	display: -webkit-box;
+	-webkit-line-clamp: 6;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	line-height: 1.5;
 }

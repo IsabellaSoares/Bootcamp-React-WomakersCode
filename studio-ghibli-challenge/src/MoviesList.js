@@ -17,9 +17,9 @@ function MoviesList () {
 
     return (
         <Row justify="center" gutter={[16, 24]} style={{margin: '0 70px'}} >
-            {list.map((film) => {
+            {list.map((film, index) => {
                 return(
-                    <MovieCard title={film.title} description={film.description} />
+                    <MovieCard title={film.title} description={film.description} index={index} />
                 );
             })}
         </Row>
