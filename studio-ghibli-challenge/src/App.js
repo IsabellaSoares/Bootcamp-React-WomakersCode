@@ -1,6 +1,6 @@
 import React from 'react'
 import './App.css'
-import MoviesList from './List';
+import MoviesList from './MoviesList/List';
 import Header from './Header';
 
 function App() {
