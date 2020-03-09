@@ -12,3 +12,7 @@ p {
 	text-overflow: ellipsis;
 	line-height: 1.5;
 }
+
+body {
+	font-family: 'Dosis';
+}
