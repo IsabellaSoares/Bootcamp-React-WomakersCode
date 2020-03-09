@@ -5,10 +5,8 @@ import MovieCard from './Card';
 function MoviesList () {
     const [list, setList] = useState([]);
     const [loading, setLoading] = useState(true);
-
-    const URL_TO_FETCH = 'https://ghibliapi.herokuapp.com';
     
-    fetch(URL_TO_FETCH + '/films', {
+    fetch('https://ghibliapi.herokuapp.com/films', {
         method: 'get'
     }).then(function(response) {
         return response.json();

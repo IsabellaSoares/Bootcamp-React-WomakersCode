@@ -32,7 +32,7 @@ function MovieInfo () {
         width: '25%',
         textAlign: 'center',
         padding: '12px 24px'
-      };
+    };
     
     function selectHeadStyle() {
         const random = Math.random();
