@@ -7,7 +7,7 @@ import { Table } from 'antd';
 import { CheckOutlined } from '@ant-design/icons';
 
 
-function VisibleTodoList() {
+function VisibleTodoList ({ todos }) {
   const columns = [
     {
       title: 'Todo',
@@ -31,29 +31,13 @@ function VisibleTodoList() {
     },
   ];
   
-  const data = [
-    {
-      key: '1',
-      todo: 'John Brown'
-    },
-    {
-      key: '2',
-      todo: 'Jim Green'
-    },
-    {
-      key: '3',
-      todo: 'Joe Black'
-    },
-  ];
-
-  //componente que mostra as todos adicionadas e cuida da lógica de completar ou não a task
   return (
     <>
       <Row type="flex"
       style={{ alignItems: "center" }}
       justify="center">
         <Col span={12}>
-          <Table columns={columns} dataSource={data} align="center" />
+          <Table columns={columns} dataSource={todos} align="center" />
         </Col>
       </Row>
       
