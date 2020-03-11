@@ -1,10 +1,8 @@
 import React, { useState, useRef } from 'react'
 import { connect } from 'react-redux'
 import { addTodo } from '../actions'
-// import { Form } from '@ant-design/compatible';
-import { Form } from 'antd';
 import '@ant-design/compatible/assets/index.css';
-import { Button, Row, Col, Input } from 'antd';
+import { Form, Button, Row, Col, Input } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 
 function AddTodo ({ addTodo }) {

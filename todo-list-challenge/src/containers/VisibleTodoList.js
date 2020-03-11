@@ -7,25 +7,30 @@ import { Table } from 'antd';
 import { CheckOutlined } from '@ant-design/icons';
 
 
-function VisibleTodoList ({ todos }) {
+function VisibleTodoList ({ todos, setTodoComplete }) {
   const columns = [
     {
       title: 'Todo',
       dataIndex: 'todo',
       key: 'todo',
       align: 'center',
-      width: '80%'
+      width: '80%',
+      render(text, record) {
+        return {
+          props: {
+            style: { textDecoration: (record['completed'] ? 'line-through' : 'none')},
+          },
+          children: <div>{text}</div>
+        };
+      },
     },
     {
       title: 'Complete!',
       key: 'action',
       align: 'center',
-      render: (text, record) => (
+      render: (record) => (
         <span>
-          {/* <a style={{ marginRight: 16 }}>Invite {record.name}</a>
-          <a>Delete</a> */}
-          {/* <Button><CheckCircleOutlined /></Button> */}
-          <Button shape="circle" icon={<CheckOutlined />} size="medium" />
+          <Button shape="circle" icon={<CheckOutlined />} size="medium" onClick={() => setTodoComplete(record.key)} />
         </span>
       ),
     },
