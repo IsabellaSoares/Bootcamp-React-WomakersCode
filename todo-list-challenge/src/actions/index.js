@@ -1,5 +1,6 @@
 // Here are the bound action creators
 // They automatically dispatches the actions
+// The actions only describe what happened
 
 // ACTIONS TYPES
 export const ADD_TODO = 'ADD_TODO';
