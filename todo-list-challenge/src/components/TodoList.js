@@ -4,15 +4,23 @@ import Todo from './Todo'
 import { List } from 'antd'
 
 //crie uma forma de popular o componente List com o componente Todo de acordo os as possíveis pros passadas ao TodoList
-
-export default function TodoList() {
-    return (
-        <List bordered style={{width: "100%", margin: "0 auto"}}>
-            
-        </List>
-    )
-}
+const TodoList = ({ todos, onTodoClick }) => (
+  <ul>
+    {todos.map((todo, index) => (
+      <Todo key={index} {...todo} onClick={() => onTodoClick(index)} />
+    ))}
+  </ul>
+)
 
 TodoList.propTypes = {
-    
+  todos: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      completed: PropTypes.bool.isRequired,
+      text: PropTypes.string.isRequired
+    }).isRequired
+  ).isRequired,
+  onTodoClick: PropTypes.func.isRequired
 }
+
+export default TodoList
