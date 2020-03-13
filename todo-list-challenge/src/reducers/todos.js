@@ -1,5 +1,4 @@
 import { ADD_TODO, TOGGLE_TODO } from '../actions';
-import { act } from 'react-dom/test-utils';
 
 const todos = (state = [], action) => {
     switch (action.type) {
