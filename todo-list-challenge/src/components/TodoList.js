@@ -10,7 +10,8 @@ const TodoList = ({ todos, onTodoClick }) => (
 	<List
 		header={<AddTodo />}
 		footer={<Footer />}
-		bordered
+    bordered
+    pagination={{ pageSize: 10 }}
 		dataSource={todos}
 		renderItem={(todo, index) => <Todo key={index} {...todo} onClick={() => onTodoClick(index)} />}
 	/>

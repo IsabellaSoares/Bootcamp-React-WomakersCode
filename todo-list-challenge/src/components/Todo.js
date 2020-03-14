@@ -1,18 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { List, Typography } from 'antd';
+import { List, Typography, Checkbox } from 'antd';
 
 const { Item } = List;
 const { Text } = Typography;
 
 const Todo = ({ onClick, completed, text }) => (
-	<Item
-		style={{
-			textDecoration: completed ? 'line-through' : 'none'
-		}}
-		onClick={onClick}
-	>
-		<Text>{text}</Text>
+	<Item>
+		<Checkbox onClick={onClick} style={{marginRight: '5px'}} checked={completed} ></Checkbox> <Text
+    style={{textDecoration: completed ? 'line-through' : 'none'}}>
+      {text}</Text>
 	</Item>
 );
 

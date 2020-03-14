@@ -18,7 +18,7 @@ let AddTodo = ({ dispatch }) => {
   return (
     <div>
       <Form form={form} layout="inline" onFinish={handleSubmit} >
-        <Form.Item name="todo">
+        <Form.Item style={{width: '50%'}} name="todo">
           <Input />
         </Form.Item>
         <Form.Item>

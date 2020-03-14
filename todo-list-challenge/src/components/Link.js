@@ -5,15 +5,16 @@ import { Button } from 'antd'
 //componente que será ultilizado no footer
 
 const Link = ({ active, children, onClick }) => (
-  <button
+  <Button
     onClick={onClick}
     disabled={active}
+    size="small"
     style={{
       marginLeft: '4px'
     }}
   >
     {children}
-  </button>
+  </Button>
 )
 
 Link.propTypes = {
