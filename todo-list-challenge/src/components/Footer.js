@@ -5,7 +5,7 @@ import { VisibilityFilters } from '../actions';
 //use o componente FilterLink para tornar o footer dinâmico
 
 const Footer = () => (
-	<div style={{position: 'absolute', bottom: 0}}>
+	<div>
 	  <span>Show: </span>
 	  <FilterLink filter={VisibilityFilters.SHOW_ALL}>All</FilterLink>
 	  <FilterLink filter={VisibilityFilters.SHOW_ACTIVE}>Active</FilterLink>
