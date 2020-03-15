@@ -1,12 +1,11 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'antd/dist/antd.css';
 import AddressForm from './form/AddressForm'
 
 function App() {
   return (
-    <div className="App">
+    <div className="App flexbox">
       <AddressForm/>
     </div>
   );

@@ -1,104 +1,83 @@
-import React from 'react'
-import { Form, FormGroup, Label, Input, FormFeedback, Container, Row, Col, Button, Spinner } from 'reactstrap';
+import React, { useState, useEffect } from 'react';
+import { Form, Input, Button } from 'antd';
+import { formItemLayout, style, itemStyle, buttonStyle } from './styles';
 
-class AddressForm extends React.Component{
-  constructor(props){
-    super(props)
-    this.state ={
-      cep: '',
-      bairro: '',
-      logradouro: '',
-      localidade: '',
-      uf: '',
-      numero: '',
-      loading:false,
-      error: ''
+const { Item } = Form;
+
+function AddressForm() {
+	const [ cep, setCep ] = useState('');
+	const [ bairro, setBairro ] = useState('');
+  const [ logradouro, setLogradouro ] = useState('');
+  const [ localidade, setLocalidade ] = useState('');
+	const [ uf, setUf ] = useState('');
+	const [ numero, setNumero ] = useState('');
+	const [ status, setStatus ] = useState('');
+  const [ error, setError ] = useState('');	
+  
+  useEffect(() => {
+    setStatus('');
+    setError('');
+
+    if (cep.length === 8){
+      setStatus('validating');
+
+      setTimeout(() => {
+        fetch(`http://viacep.com.br/ws/${cep}/json/`)
+        .then(res => res.json())
+        .then(cepResult => {
+
+          if (cepResult.erro) {
+            setStatus('error');
+            setError('Não foi possível encontrar este CEP');
+            return;
+          }
+          
+          setStatus('success');
+          setLogradouro(cepResult.logradouro);
+          setBairro(cepResult.bairro);
+          setLocalidade(cepResult.localidade);
+          setUf(cepResult.uf);
+        })
+        .catch(error => setError(error));
+      }, 2000);  
     }
-  }
+  }, [cep]);
 
-  verificaCep = async (cep) => {
-    console.log("VERIFICA", cep)
-    this.setState({error:false})
-    return await fetch(`http://viacep.com.br/ws/${cep}/json/`)
-    .then(res => res.json())
-    .then(cepResult => {
-      this.setState({loading:false})
-      return cepResult
-    })
-    .catch(error => this.setState({error:true, loading:false}))
-  }
+	return (
+		<Form {...formItemLayout} style={style} >
+			<Item
+				label="CEP"
+				hasFeedback
+        validateStatus={status}
+        help={error}
+        style={itemStyle}
+			>
+				<Input placeholder="Apenas números" maxLength={8} value={cep} onChange={(e) => setCep(e.target.value)} />
+			</Item>
 
-  handleChange = async (field) => {
-    const { name, value } = field
-    this.setState({[name]: value, error:false})
-    if(name === 'cep' && value.length ===8 ){
-      this.setState({loading:true})
-      const cepObject = await this.verificaCep(value)
-      if(cepObject.erro){
-        this.setState({error:true})
-        return
-      }
-      console.log("CEPOBJ", cepObject)
-      const { cep, logradouro, bairro, localidade, uf } = cepObject
-      this.setState({cep, logradouro, bairro, localidade, uf})
-    }
-  }
+			<Item label="Logradouro" style={itemStyle} >
+				<Input value={logradouro} onChange={(e) => setLogradouro(e.target.value)} />
+			</Item>
 
-  handleBlur = async value => {
-    if(value.length === 8 ){
-      this.setState({loading:true})
-      const cepObject = await this.verificaCep(value)
-      if(cepObject.erro){
-        this.setState({error:true})
-        return
-      }
-      const { cep, logradouro, bairro, localidade, uf } = cepObject
-      this.setState({cep, logradouro, bairro, localidade, uf})
-    }
-  }
+			<Item label="Bairro" style={itemStyle} >
+				<Input value={bairro} onChange={(e) => setBairro(e.target.value)} />
+			</Item>
 
-  render() {
-    const { loading, cep, logradouro, bairro, localidade, uf, numero, error } = this.state
-    return(
-      <Container>
-        <Row>
-          <Col sm="12" md={{ size: 6, offset: 3 }}>
-            {loading && <Spinner size="sm" color="primary" />}
-            <Form style={{textAlign:'left'}}> 
-            <FormGroup>
-              <Label for="cep">CEP</Label>
-              <Input invalid={error.toString()} name="cep" value={cep} onChange={e => this.handleChange(e.target)} onBlur={e => this.handleBlur(e.target.value)} maxLength={9}/>
-              <FormFeedback invalid={error.toString()}>Error</FormFeedback>
-            </FormGroup>
-            <FormGroup>
-              <Label for="logradouro">Logradouro</Label>
-              <Input name="logradouro" value={logradouro} onChange={e => this.handleChange(e.target)}/>
-            </FormGroup>
-            <FormGroup>
-              <Label for="bairro">Bairro</Label>
-              <Input name="bairro" value={bairro} onChange={e => this.handleChange(e.target)}/>
-            </FormGroup>
-            <FormGroup>
-              <Label for="localidade">Localidade</Label>
-              <Input name="localidade" value={localidade} onChange={e => this.handleChange(e.target)}/>
-            </FormGroup>
-            <FormGroup>
-              <Label for="uf">UF</Label>
-              <Input name="uf" value={uf}  onChange={e => this.handleChange(e.target)}/>
-            </FormGroup>
-            <FormGroup>
-              <Label for="numero">Numero</Label>
-              <Input name="numero" value={numero}  onChange={e => this.handleChange(e.target)}/>
-            </FormGroup>
-            <FormGroup>
-              <Button color="success" onClick={this.verificaCep}>Enviar</Button>
-            </FormGroup>
-            </Form>
-          </Col>
-        </Row>
-      </Container>
-    )
-  }
+			<Item label="Localidade" style={itemStyle} >
+				<Input value={localidade} onChange={(e) => setLocalidade(e.target.value)} />
+			</Item>
+
+			<Item label="UF" style={itemStyle} >
+				<Input value={uf} onChange={(e) => setUf(e.target.value)} />
+			</Item>
+
+			<Item label="Número" style={itemStyle} >
+				<Input value={numero} onChange={(e) => setNumero(e.target.value)} />
+			</Item>
+
+      <Button style={buttonStyle} >Enviar</Button>
+		</Form>
+	);
 }
 
-export default AddressForm
+export default AddressForm;
