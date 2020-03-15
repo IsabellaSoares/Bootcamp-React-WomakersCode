@@ -1,24 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
+import { Gif } from '@giphy/react-components';
+import { Input } from 'antd';
 import './App.css';
 
-function App() {
+const { Search } = Input;
+
+function App () {
+  const [gif, setGif] = useState(null);
+  const [query, setQuery] = useState('');
+  const [loading, setLoading] = useState(false);
+  const url = 'http://api.giphy.com/v1/gifs/search';
+  const key = 'vFRmKw6bhGH6cEgJlHd9wblD1XT36IF7';
+
+  useEffect(() => {
+    setLoading(true);
+    fetch(url + `?q=${query}&api_key=${key}&limit=1`)
+      .then(response => response.json())
+      .then((result) => {
+        setGif(result);
+        setLoading(false);
+        console.log('result', result);
+      },
+      (error) => {
+        console.log(error);
+      })
+      .catch(error => console.log(error));
+  }, [query]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Search
+        placeholder="Search"
+        loading={loading}
+        enterButton
+        onSearch={value => setQuery(value)} />
+      
+      { gif && 
+        gif.data.map(g => {
+          return <Gif gif={g} width={200} />
+        })
+      }
     </div>
   );
 }
