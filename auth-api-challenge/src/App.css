@@ -1,4 +1,7 @@
 .App {
   margin: auto;
   width: 50%;
+  background-color: #FFF;
+  padding: 30px;
+  border-radius: 8px;
 }

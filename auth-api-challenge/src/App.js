@@ -1,9 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Gif } from '@giphy/react-components';
-import { Input } from 'antd';
+import { Input, Typography } from 'antd';
+import { SmileTwoTone } from '@ant-design/icons';
 import './App.css';
 
+const { Title } = Typography;
 const { Search } = Input;
+
+const style= {
+  marginTop: '50px',
+  display: 'flex',
+  justifyContent: 'center',
+  fontSize: '50px'
+}
 
 function App () {
   const [gif, setGif] = useState(null);
@@ -29,17 +38,21 @@ function App () {
 
   return (
     <div className="App">
+      <Title style={{color: '#1890FF', textAlign: 'center'}}>GIPHY Search!</Title>
       <Search
         placeholder="Search"
         loading={loading}
         enterButton
         onSearch={value => setQuery(value)} />
-      
-      { gif && 
-        gif.data.map(g => {
-          return <Gif gif={g} width={200} />
-        })
-      }
+
+      <div style={style}>
+        {query ? 
+          gif.data.map(g => {
+            return <div ><Gif gif={g} width={200}/></div>
+          }) : 
+          <SmileTwoTone />
+        }
+      </div>
     </div>
   );
 }
