@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { Link } from 'react-router-dom';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       </header>
       <p className="App-intro">
           Home :D
+          <Link to="/sobre">Ir para a página de Sobre</Link>
       </p>
     </div>
   );
