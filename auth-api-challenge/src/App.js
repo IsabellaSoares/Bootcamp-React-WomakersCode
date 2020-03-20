@@ -28,10 +28,6 @@ function App () {
       .then((result) => {
         setGif(result);
         setLoading(false);
-        console.log('result', result);
-      },
-      (error) => {
-        console.log(error);
       })
       .catch(error => console.log(error));
   }, [query]);
