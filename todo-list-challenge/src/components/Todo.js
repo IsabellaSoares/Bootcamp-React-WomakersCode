@@ -7,9 +7,8 @@ const { Text } = Typography;
 
 const Todo = ({ onClick, completed, text }) => (
 	<Item>
-		<Checkbox onClick={onClick} style={{marginRight: '5px'}} checked={completed} ></Checkbox> <Text
-    style={{textDecoration: completed ? 'line-through' : 'none'}}>
-      {text}</Text>
+		<Checkbox onClick={onClick} style={{ marginRight: '5px' }} checked={completed} />{' '}
+		<Text style={{ textDecoration: completed ? 'line-through' : 'none' }}>{text}</Text>
 	</Item>
 );
 
