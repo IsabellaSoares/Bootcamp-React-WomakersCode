@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import { Card, CardHeader, CardContent, TextField, Button, Snackbar } from '@material-ui/core';
 import './index.css';
@@ -16,8 +16,8 @@ const initialValues = {
 	confirmPassword: ''
 };
 
-const MyForm = () => {
-	const [ open, setOpen ] = React.useState(false);
+const MyFormUseFormik = () => {
+	const [ open, setOpen ] = useState(false);
 	const handleClose = (event, reason) => {
 		if (reason === 'clickaway') {
 			return;
@@ -28,9 +28,7 @@ const MyForm = () => {
 	};
 
 	const onSubmit = (values) => {
-		console.log('values >> ', values);
-		setOpen(true);
-		
+		setOpen(true);		
 		setTimeout(() => formik.resetForm(), 6000);
 	};
 
@@ -45,11 +43,23 @@ const MyForm = () => {
 				<CardHeader title="Form with useFormik()" />
 				<CardContent>
 					<form onSubmit={formik.handleSubmit}>
-						<TextField label="Name" {...formik.getFieldProps('name')} style={{ marginBottom: '10px' }} />
+						<TextField 
+							label="Name" 
+							{...formik.getFieldProps('name')} 
+							style={{ marginBottom: '10px' }} 
+						/>
 						<br />
-						<TextField label="Email" {...formik.getFieldProps('email')} style={{ marginBottom: '10px' }} />
+						<TextField 
+							label="Email" 
+							{...formik.getFieldProps('email')} 
+							style={{ marginBottom: '10px' }} 
+						/>
 						<br />
-						<TextField label="Password" {...formik.getFieldProps('password')} style={{ marginBottom: '10px' }} />
+						<TextField 
+							label="Password" 
+							{...formik.getFieldProps('password')} 
+							style={{ marginBottom: '10px' }} 
+						/>
 						<br />
 						<TextField
 							label="Confirm password"
@@ -57,9 +67,17 @@ const MyForm = () => {
 							style={{ marginBottom: '10px' }}
 						/>
 						<br />
-						<TextField label="Address" {...formik.getFieldProps('address')} style={{ marginBottom: '10px' }} />
+						<TextField 
+							label="Address" 
+							{...formik.getFieldProps('address')} 
+							style={{ marginBottom: '10px' }} 
+						/>
 						<br />
-						<TextField label="City" {...formik.getFieldProps('city')} style={{ marginBottom: '10px' }} />
+						<TextField 
+							label="City" 
+							{...formik.getFieldProps('city')} 
+							style={{ marginBottom: '10px' }} 
+						/>
 						<br />
 						<Button variant="outlined" color="primary" type="submit" style={{ marginTop: '20px' }}>
 							Submit!
@@ -80,4 +98,4 @@ const MyForm = () => {
 	);
 };
 
-export default MyForm;
+export default MyFormUseFormik;
