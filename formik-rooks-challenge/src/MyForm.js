@@ -16,7 +16,7 @@ const initialValues = {
 	confirmPassword: ''
 };
 
-const MyFormUseFormik = () => {
+const MyFormFormikHooks = () => {
 	const [ open, setOpen ] = useState(false);
 	const handleClose = (event, reason) => {
 		if (reason === 'clickaway') {
@@ -40,7 +40,7 @@ const MyFormUseFormik = () => {
 	return (
 		<div>
 			<Card className="my-form">
-				<CardHeader title="Form with useFormik()" />
+				<CardHeader title="Form with Formik Hooks" />
 				<CardContent>
 					<form onSubmit={formik.handleSubmit}>
 						<TextField 
@@ -88,7 +88,7 @@ const MyFormUseFormik = () => {
 			<div>
 				<Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
 					<Alert onClose={handleClose} severity="success">
-						Your submit using "useFormik()" is complete!
+						Your submit using Formik Hooks is complete!
 						<br />
 						{JSON.stringify(formik.values, null, 2)}
 					</Alert>
@@ -98,4 +98,4 @@ const MyFormUseFormik = () => {
 	);
 };
 
-export default MyFormUseFormik;
+export default MyFormFormikHooks;
