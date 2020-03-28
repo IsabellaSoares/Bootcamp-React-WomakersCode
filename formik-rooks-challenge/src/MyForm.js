@@ -1,33 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import { useFormik } from 'formik';
-import { Card, CardHeader, CardContent, TextField, Button, Snackbar } from '@material-ui/core';
+import { Card, CardHeader, CardContent, Button } from '@material-ui/core';
 import './index.css';
-import MuiAlert from '@material-ui/lab/Alert';
-
-function Alert(props) {
-	return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
-
-const initialValues = {
-	name: '',
-	email: '',
-	address: '',
-	password: '',
-	confirmPassword: ''
-};
+import { initialValues } from './initialValues';
+import { inputText as InputText } from './inputText';
+import SubmitSnackbar from './SubmitSnackbar';
 
 const MyFormFormikHooks = () => {
-	const [ open, setOpen ] = useState(false);
-	const handleClose = (event, reason) => {
-		if (reason === 'clickaway') {
-			return;
-		}
+	const [ open, setOpen ] = useState(false);	
 
-		formik.resetForm();
-		setOpen(false);
-	};
-
-	const onSubmit = (values) => {
+	const onSubmit = () => {
 		setOpen(true);		
 		setTimeout(() => formik.resetForm(), 6000);
 	};
@@ -38,63 +20,25 @@ const MyFormFormikHooks = () => {
 	});
 
 	return (
-		<div>
+		<Fragment>
 			<Card className="my-form">
 				<CardHeader title="Form with Formik Hooks" />
 				<CardContent>
 					<form onSubmit={formik.handleSubmit}>
-						<TextField 
-							label="Name" 
-							{...formik.getFieldProps('name')} 
-							style={{ marginBottom: '10px' }} 
-						/>
-						<br />
-						<TextField 
-							label="Email" 
-							{...formik.getFieldProps('email')} 
-							style={{ marginBottom: '10px' }} 
-						/>
-						<br />
-						<TextField 
-							label="Password" 
-							{...formik.getFieldProps('password')} 
-							style={{ marginBottom: '10px' }} 
-						/>
-						<br />
-						<TextField
-							label="Confirm password"
-							{...formik.getFieldProps('confirmPassword')}
-							style={{ marginBottom: '10px' }}
-						/>
-						<br />
-						<TextField 
-							label="Address" 
-							{...formik.getFieldProps('address')} 
-							style={{ marginBottom: '10px' }} 
-						/>
-						<br />
-						<TextField 
-							label="City" 
-							{...formik.getFieldProps('city')} 
-							style={{ marginBottom: '10px' }} 
-						/>
-						<br />
-						<Button variant="outlined" color="primary" type="submit" style={{ marginTop: '20px' }}>
+						<InputText label="Name" {...formik.getFieldProps('name')} />
+						<InputText label="Email" {...formik.getFieldProps('email')} />
+						<InputText label="Password" {...formik.getFieldProps('password')} />
+						<InputText label="Confirm password" {...formik.getFieldProps('confirmPassword')} />
+						<InputText label="Address" {...formik.getFieldProps('address')} />
+						<InputText label="City" {...formik.getFieldProps('city')} />
+						<Button variant="outlined" color="secondary" type="submit" style={{ marginTop: '20px' }}>
 							Submit!
 						</Button>
 					</form>
 				</CardContent>
 			</Card>
-			<div>
-				<Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-					<Alert onClose={handleClose} severity="success">
-						Your submit using Formik Hooks is complete!
-						<br />
-						{JSON.stringify(formik.values, null, 2)}
-					</Alert>
-				</Snackbar>
-			</div>
-		</div>
+			<SubmitSnackbar open={open} setOpen={setOpen} formik={formik} />
+		</Fragment>
 	);
 };
 
