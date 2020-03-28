@@ -5,19 +5,12 @@ import './index.css';
 import { initialValues } from './initialValues';
 import { inputText as InputText } from './inputText';
 import SubmitSnackbar from './SubmitSnackbar';
-import * as Yup from 'yup'
 
 const MyForm = () => {
 	const [ open, setOpen ] = useState(false);
 	
 	const formik = useFormik({
 		initialValues,
-    validationSchema: Yup.object().shape({
-      name: Yup.string().required('field name is required'),
-      number: Yup.number().required('field number is required'),
-      cvc: Yup.string().required('field cvc is required'),
-      expiry: Yup.string().required('field expiry is required')
-    }),
 		onSubmit: values => {			
 			setOpen(true);		
 			setTimeout(() => formik.resetForm(), 6000);
